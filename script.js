@@ -16,7 +16,7 @@ const translations = {
     hero_watch: 'Watch Introduction',
 
     // Pandit Intro
-    pandit_name: 'Pandit Srivatsa',
+    pandit_name: 'Keerthi Bharadwaj',
     pandit_role: 'Vedic Scholar & Purohit',
     pandit_bio: 'A devoted Vedic scholar committed to performing authentic Hindu rituals and sacred ceremonies. With deep knowledge of Shastras and years of dedicated practice, Pandit Srivatsa brings divine blessings to every occasion.',
     highlight_exp: '<strong>15+ Years</strong> of experience in Vedic rituals & ceremonies',
