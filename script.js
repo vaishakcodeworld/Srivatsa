@@ -390,26 +390,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Touch/Swipe support
-  carousel.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
 
-  carousel.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-  }, { passive: true });
-
-  function handleSwipe() {
-    const diff = touchStartX - touchEndX;
-    if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        scrollToSlide(currentSlide + 1);
-      } else {
-        scrollToSlide(currentSlide - 1);
-      }
-    }
-  }
 
   // Update current slide on manual scroll
   let scrollTimeout;
