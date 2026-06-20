@@ -871,6 +871,8 @@ ul {
   padding: var(--space-xl) var(--space-lg);
   scrollbar-width: none;
   -ms-overflow-style: none;
+  transform: translateZ(0);
+  will-change: transform, scroll-position;
 }
 
 .services-carousel::-webkit-scrollbar {
@@ -884,10 +886,12 @@ ul {
   border-radius: var(--radius-lg);
   overflow: hidden;
   cursor: pointer;
-  transition: all var(--transition-smooth);
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
   box-shadow: 0 5px 20px var(--shadow-soft);
   border: 1px solid rgba(52, 168, 83, 0.15);
   position: relative;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 .service-card:hover {
