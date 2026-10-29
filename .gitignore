@@ -1,0 +1,8 @@
+# Raw photos
+photo/
+
+# Temp / scratch directories
+scratch/
+tmp/
+.DS_Store
+Thumbs.db

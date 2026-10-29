@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Primary Homepage & Canonical URL -->
+  <url>
+    <loc>https://srivatsavaidikam.com/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://srivatsavaidikam.com/" />
+    <xhtml:link rel="alternate" hreflang="kn-IN" href="https://srivatsavaidikam.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://srivatsavaidikam.com/" />
+    <image:image>
+      <image:loc>https://srivatsavaidikam.com/assets/gallery/pandit-profile.jpeg</image:loc>
+      <image:title>Pandit Keerthi Bharadwaj - Vedic Purohit in Srirangapatna, Mysore &amp; Mandya</image:title>
+      <image:caption>Pandit Keerthi Bharadwaj performing authentic Vedic rituals and ceremonies</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://srivatsavaidikam.com/assets/logo.png</image:loc>
+      <image:title>Srivatsa Vaidikam Sacred Vedic Services Logo</image:title>
+    </image:image>
+  </url>
+
+  <!-- Sacred Services Section -->
+  <url>
+    <loc>https://srivatsavaidikam.com/#services</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://srivatsavaidikam.com/#services" />
+    <xhtml:link rel="alternate" hreflang="kn-IN" href="https://srivatsavaidikam.com/#services" />
+  </url>
+
+  <!-- Service Locations: Srirangapatna, Mysore, Mandya -->
+  <url>
+    <loc>https://srivatsavaidikam.com/#locations</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://srivatsavaidikam.com/#locations" />
+    <xhtml:link rel="alternate" hreflang="kn-IN" href="https://srivatsavaidikam.com/#locations" />
+  </url>
+
+  <!-- FAQ Section (High-ranking for LLM and Search Snippets) -->
+  <url>
+    <loc>https://srivatsavaidikam.com/#faq</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://srivatsavaidikam.com/#faq" />
+    <xhtml:link rel="alternate" hreflang="kn-IN" href="https://srivatsavaidikam.com/#faq" />
+  </url>
+
+  <!-- Sacred Moments Gallery -->
+  <url>
+    <loc>https://srivatsavaidikam.com/#gallery</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://srivatsavaidikam.com/#gallery" />
+    <xhtml:link rel="alternate" hreflang="kn-IN" href="https://srivatsavaidikam.com/#gallery" />
+  </url>
+
+  <!-- Contact & Booking Section -->
+  <url>
+    <loc>https://srivatsavaidikam.com/#contact</loc>
+    <lastmod>2026-10-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en-IN" href="https://srivatsavaidikam.com/#contact" />
+    <xhtml:link rel="alternate" hreflang="kn-IN" href="https://srivatsavaidikam.com/#contact" />
+  </url>
+
+</urlset>
+
