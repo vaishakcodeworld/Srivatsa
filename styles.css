@@ -559,18 +559,27 @@ ul {
   flex-direction: column;
 }
 
+/* Profile Header (Avatar + Details Balanced Alignment) */
+.pandit-profile-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
 .pandit-avatar-container {
   position: relative;
   display: inline-block;
-  margin-bottom: var(--space-md);
-  align-self: flex-start;
+  flex-shrink: 0;
+  margin: 10px; /* Room for rings so they never clip against borders */
 }
 
 .pandit-avatar {
-  width: 105px;
-  height: 105px;
+  width: 120px;
+  height: 120px;
   border-radius: var(--radius-full);
   object-fit: cover;
+  object-position: 50% 18%; /* Focus on Pandit's face, smile and sacred tilak */
   position: relative;
   z-index: 2;
   border: 3px solid var(--pure-white);
@@ -594,24 +603,29 @@ ul {
   left: -10px;
   right: -10px;
   bottom: -10px;
-  border: 1px dashed rgba(200, 169, 94, 0.4);
+  border: 1px dashed rgba(200, 169, 94, 0.45);
 }
 
 .avatar-badge {
   position: absolute;
-  bottom: 2px;
-  right: 2px;
+  bottom: 0px;
+  right: 0px;
   background: var(--pure-white);
   border: 2px solid var(--warm-gold);
   border-radius: var(--radius-full);
-  width: 28px;
-  height: 28px;
+  width: 30px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   z-index: 3;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+
+.pandit-header-details {
+  flex: 1;
+  min-width: 0;
 }
 
 .pandit-badge {
@@ -642,6 +656,30 @@ ul {
   font-weight: 600;
   letter-spacing: 0.5px;
   text-transform: uppercase;
+}
+
+.pandit-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.meta-pill {
+  font-size: 0.725rem;
+  background: #FFF8EA;
+  border: 1px solid rgba(200, 169, 94, 0.28);
+  color: var(--dark-brown);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pill-dot {
+  color: var(--warm-gold);
 }
 
 .pandit-divider {
@@ -2087,9 +2125,13 @@ ul {
     padding: var(--space-xl) var(--space-lg);
   }
 
+  .pandit-profile-header {
+    gap: var(--space-md);
+  }
+
   .pandit-avatar {
-    width: 96px;
-    height: 96px;
+    width: 100px;
+    height: 100px;
   }
 
   .pandit-name {
@@ -2207,6 +2249,24 @@ ul {
 
   .nav-brand-text .brand-tagline {
     font-size: 0.5rem;
+  }
+
+  .pandit-profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+
+  .pandit-avatar-container {
+    margin: 8px auto;
+  }
+
+  .pandit-meta-pills {
+    justify-content: center;
+  }
+
+  .pandit-divider {
+    margin: var(--space-md) auto;
   }
 
   .hero-header {
