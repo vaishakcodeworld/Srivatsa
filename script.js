@@ -941,13 +941,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target === bookingModal) closeBookingModal();
   });
 
+  const PANDIT_WHATSAPP_NUMBER = '917975210984';
+
+  function sendToWhatsApp(url) {
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent) || window.innerWidth <= 768;
+    if (isMobile) {
+      window.location.href = url;
+    } else {
+      window.open(url, '_blank');
+    }
+  }
+
   // Booking Form Submit
   bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
     const name = document.getElementById('bookingName').value.trim();
     const phone = document.getElementById('bookingPhone').value.trim();
-    const service = bookingService.value;
+    const service = bookingService.value || 'Vedic Pooja / Ceremony';
+    const date = document.getElementById('bookingDate').value || 'Immediate / Muhurtha discussion';
+    const details = document.getElementById('bookingMessage').value.trim() || 'None';
 
     if (!name || !phone || !service) {
       bookingFormError.classList.add('show');
@@ -955,12 +968,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     bookingFormError.classList.remove('show');
+
+    // Construct formatted WhatsApp message
+    const msg =
+      `*🕉️ ಶ್ರೀವತ್ಸ ವೈದಿಕಂ — NEW POOJA BOOKING*\n\n` +
+      `👤 *Devotee Name:* ${name}\n` +
+      `📞 *Phone Number:* ${phone}\n` +
+      `🪔 *Pooja / Ceremony:* ${service}\n` +
+      `📅 *Preferred Date:* ${date}\n` +
+      `📝 *Details / Location:* ${details}\n\n` +
+      `🙏 _Sent directly from srivatsavaidikam.com booking form_`;
+
+    const whatsappUrl = `https://wa.me/${PANDIT_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+    const isKn = currentLang === 'kn';
+    const btnLabel = isKn ? 'ವಾಟ್ಸ್‌ಆ್ಯಪ್‌ನಲ್ಲಿ ಖಚಿತಪಡಿಸಿ' : 'Confirm on WhatsApp';
+    const redirectLabel = isKn
+      ? 'ಪಂಡಿತ ಕೀರ್ತಿ ಭಾರದ್ವಾಜರಿಗೆ ವಿವರಗಳನ್ನು ವಾಟ್ಸ್‌ಆ್ಯಪ್ ಮೂಲಕ ಕಳುಹಿಸಲಾಗುತ್ತಿದೆ...'
+      : 'Forwarding all your booking details directly to Pandit Keerthi Bharadwaj on WhatsApp...';
+
     bookingForm.style.display = 'none';
+    bookingFormSuccess.innerHTML = `
+      <div class="success-icon">🪔</div>
+      <h3>${isKn ? 'ಬುಕಿಂಗ್ ವಿವರಗಳು ಸಿದ್ಧವಾಗಿವೆ!' : 'Booking Received!'}</h3>
+      <p>${redirectLabel}</p>
+      <a href="${whatsappUrl}" target="_blank" rel="noopener" class="hero-btn hero-btn-whatsapp" style="margin: 16px auto 0; display: inline-flex; width: auto; padding: 12px 24px; text-decoration: none;">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;margin-right:8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>${btnLabel}</span>
+      </a>
+    `;
     bookingFormSuccess.style.display = 'block';
 
-    setTimeout(() => {
-      closeBookingModal();
-    }, 3000);
+    // Directly open WhatsApp
+    sendToWhatsApp(whatsappUrl);
   });
 
   // ===== GALLERY FILTER =====
@@ -1037,14 +1077,43 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     contactFormError.classList.remove('show');
+
+    // Construct formatted WhatsApp message
+    const msg =
+      `*🕉️ ಶ್ರೀವತ್ಸ ವೈದಿಕಂ — NEW INQUIRY*\n\n` +
+      `👤 *Devotee Name:* ${name}\n` +
+      `📞 *Phone Number:* ${phone}\n` +
+      `📝 *Message / Question:* ${message}\n\n` +
+      `🙏 _Sent directly from srivatsavaidikam.com contact form_`;
+
+    const whatsappUrl = `https://wa.me/${PANDIT_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+
+    const isKn = currentLang === 'kn';
+    const btnLabel = isKn ? 'ವಾಟ್ಸ್‌ಆ್ಯಪ್‌ನಲ್ಲಿ ಸಂದೇಶ ಕಳುಹಿಸಿ' : 'Send via WhatsApp';
+    const redirectLabel = isKn
+      ? 'ನಿಮ್ಮ ಸಂದೇಶವನ್ನು ವಾಟ್ಸ್‌ಆ್ಯಪ್ ಮೂಲಕ ಪಂಡಿತರಿಗೆ ರವಾನಿಸಲಾಗುತ್ತಿದೆ...'
+      : 'Forwarding your inquiry directly to Pandit Keerthi Bharadwaj on WhatsApp...';
+
     contactForm.style.display = 'none';
+    contactFormSuccess.innerHTML = `
+      <div class="success-icon">🪔</div>
+      <h3>${isKn ? 'ಸಂದೇಶ ಸಿದ್ಧವಾಗಿದೆ!' : 'Message Ready!'}</h3>
+      <p>${redirectLabel}</p>
+      <a href="${whatsappUrl}" target="_blank" rel="noopener" class="hero-btn hero-btn-whatsapp" style="margin: 16px auto 0; display: inline-flex; width: auto; padding: 12px 24px; text-decoration: none;">
+        <svg viewBox="0 0 24 24" style="width:20px;height:20px;fill:currentColor;margin-right:8px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>${btnLabel}</span>
+      </a>
+    `;
     contactFormSuccess.style.display = 'block';
+
+    // Directly open WhatsApp
+    sendToWhatsApp(whatsappUrl);
 
     setTimeout(() => {
       contactForm.style.display = 'block';
       contactFormSuccess.style.display = 'none';
       contactForm.reset();
-    }, 5000);
+    }, 8000);
   });
 
   // ===== SCROLL ANIMATIONS (Intersection Observer) =====
