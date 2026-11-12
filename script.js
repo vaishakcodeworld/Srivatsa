@@ -818,9 +818,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ===== POOJA DIRECTORY TABS FILTER =====
+  // ===== POOJA DIRECTORY TABS FILTER & SLIDER =====
   const poojaCatTabs = document.querySelectorAll('#poojaCatTabs .pooja-cat-tab');
+  const poojaSlider = document.getElementById('poojaCardsGrid');
   const poojaCards = document.querySelectorAll('#poojaCardsGrid .pooja-card');
+  const slideCountBadge = document.getElementById('slideCountBadge');
+  const poojaSlidePrev = document.getElementById('poojaSlidePrev');
+  const poojaSlideNext = document.getElementById('poojaSlideNext');
+  const poojaMobPrev = document.getElementById('poojaMobPrev');
+  const poojaMobNext = document.getElementById('poojaMobNext');
+
+  function getPoojaScrollAmount() {
+    if (!poojaSlider) return 320;
+    const firstCard = poojaSlider.querySelector('.pooja-card:not([style*="display: none"])');
+    if (!firstCard) return 320;
+    return firstCard.offsetWidth + 24;
+  }
+
+  function scrollPoojaSlider(direction) {
+    if (!poojaSlider) return;
+    const amount = getPoojaScrollAmount();
+    poojaSlider.scrollBy({ left: direction * amount, behavior: 'smooth' });
+  }
+
+  if (poojaSlidePrev) poojaSlidePrev.addEventListener('click', () => scrollPoojaSlider(-1));
+  if (poojaSlideNext) poojaSlideNext.addEventListener('click', () => scrollPoojaSlider(1));
+  if (poojaMobPrev) poojaMobPrev.addEventListener('click', () => scrollPoojaSlider(-1));
+  if (poojaMobNext) poojaMobNext.addEventListener('click', () => scrollPoojaSlider(1));
 
   if (poojaCatTabs.length > 0 && poojaCards.length > 0) {
     poojaCatTabs.forEach(tab => {
@@ -829,18 +853,31 @@ document.addEventListener('DOMContentLoaded', () => {
         tab.classList.add('active');
 
         const category = tab.dataset.category || tab.dataset.cat;
+        let visibleCount = 0;
 
         poojaCards.forEach(card => {
           if (category === 'all' || card.dataset.category === category) {
             card.style.display = 'flex';
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
+            visibleCount++;
           } else {
             card.style.display = 'none';
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(10px)';
           }
         });
+
+        // Smoothly reset slider to beginning
+        if (poojaSlider) {
+          poojaSlider.scrollTo({ left: 0, behavior: 'smooth' });
+        }
+
+        // Update count badge
+        if (slideCountBadge) {
+          const isKn = currentLang === 'kn';
+          slideCountBadge.textContent = isKn
+            ? `${visibleCount} ಪವಿತ್ರ ಪೂಜಾ ಕೈಂಕರ್ಯಗಳು`
+            : `Showing ${visibleCount} Sacred Ceremonies`;
+        }
       });
     });
   }

@@ -1152,23 +1152,149 @@ ul {
   transform: translateY(-2px);
 }
 
+/* Pooja Directory Slider Container */
+.pooja-slider-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
 .pooja-cards-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  display: flex;
   gap: var(--space-xl);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  padding: var(--space-md) var(--space-xs) var(--space-xl);
+  scrollbar-width: thin;
+  scrollbar-color: var(--warm-gold) rgba(200, 169, 94, 0.1);
+  width: 100%;
+}
+
+.pooja-cards-grid::-webkit-scrollbar {
+  height: 6px;
+}
+
+.pooja-cards-grid::-webkit-scrollbar-track {
+  background: rgba(200, 169, 94, 0.12);
+  border-radius: var(--radius-full);
+}
+
+.pooja-cards-grid::-webkit-scrollbar-thumb {
+  background: var(--warm-gold);
+  border-radius: var(--radius-full);
 }
 
 .pooja-card {
+  flex: 0 0 320px;
+  max-width: 320px;
+  min-width: 290px;
+  scroll-snap-align: start;
   background: var(--pure-white);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
-  border: 1px solid rgba(52, 168, 83, 0.15);
+  border: 1px solid rgba(200, 169, 94, 0.22);
   box-shadow: 0 4px 20px var(--shadow-soft);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   transition: all var(--transition-smooth);
   position: relative;
   overflow: hidden;
+}
+
+/* Slider Navigation Buttons */
+.pooja-slide-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background: var(--pure-white);
+  border: 2px solid var(--warm-gold);
+  color: var(--warm-gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 6px 20px rgba(42, 26, 10, 0.15);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.pooja-slide-btn:hover {
+  background: var(--warm-gold);
+  color: var(--pure-white);
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 8px 25px rgba(200, 169, 94, 0.35);
+}
+
+.pooja-slide-prev {
+  left: -22px;
+}
+
+.pooja-slide-next {
+  right: -22px;
+}
+
+.pooja-slide-btn svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* Slider Footer & Counter */
+.pooja-slider-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-md);
+  padding: 0 var(--space-xs);
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.slide-count-badge {
+  font-size: 0.775rem;
+  background: #FFF8EA;
+  border: 1px solid rgba(200, 169, 94, 0.3);
+  color: var(--dark-brown);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.slide-hint-text {
+  font-size: var(--fs-xs);
+  color: var(--light-brown);
+  font-style: italic;
+}
+
+.pooja-slider-mobile-nav {
+  display: none;
+  gap: 8px;
+}
+
+.pooja-mob-btn {
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  background: var(--pure-white);
+  border: 1.5px solid var(--warm-gold);
+  color: var(--dark-brown);
+  font-size: 0.775rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pooja-mob-btn:hover {
+  background: var(--warm-gold);
+  color: var(--pure-white);
 }
 
 .pooja-card::before {
@@ -2216,13 +2342,30 @@ ul {
     font-size: 0.8rem;
   }
 
+  .pooja-slide-btn {
+    display: none;
+  }
+
+  .pooja-slider-mobile-nav {
+    display: flex;
+  }
+
   .pooja-cards-grid {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: var(--space-md);
+    padding: var(--space-sm) 0 var(--space-lg);
   }
 
   .pooja-card {
+    flex: 0 0 calc(100vw - 72px);
+    max-width: 320px;
+    min-width: 270px;
+    scroll-snap-align: center;
     padding: var(--space-lg);
+  }
+
+  .pooja-slider-footer {
+    justify-content: center;
+    text-align: center;
   }
 
   /* Gallery */
@@ -2422,12 +2565,16 @@ ul {
   }
 
   .pooja-cards-grid {
-    grid-template-columns: 1fr;
     gap: 12px;
+    padding: var(--space-xs) 0 var(--space-md);
   }
 
   .pooja-card {
-    padding: 14px 16px;
+    flex: 0 0 calc(100vw - 48px);
+    max-width: 300px;
+    min-width: 260px;
+    padding: 16px;
+    scroll-snap-align: center;
   }
 
   .pooja-card-title {

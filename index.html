@@ -658,8 +658,14 @@
           <button class="pooja-cat-tab" data-category="pitru" data-cat="pitru" data-i18n="cat_tab_pitru">Pitru Karyas</button>
         </div>
 
-        <!-- Pooja Cards Grid -->
-        <div class="pooja-cards-grid" id="poojaCardsGrid">
+        <!-- Pooja Slider Container -->
+        <div class="pooja-slider-container">
+          <button class="pooja-slide-btn pooja-slide-prev" id="poojaSlidePrev" aria-label="Previous pooja ceremony">
+            <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+
+          <!-- Pooja Cards Slider Track -->
+          <div class="pooja-cards-grid" id="poojaCardsGrid">
 
           <!-- Card 1: Satyanarayan Pooja -->
           <div class="pooja-card" data-category="vrata">
@@ -1067,6 +1073,25 @@
             </div>
           </div>
 
+          </div>
+
+          <button class="pooja-slide-btn pooja-slide-next" id="poojaSlideNext" aria-label="Next pooja ceremony">
+            <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+
+        <!-- Pooja Slider Footer -->
+        <div class="pooja-slider-footer">
+          <div class="pooja-slide-counter">
+            <span class="slide-count-badge" id="slideCountBadge">Showing 29 Sacred Ceremonies</span>
+          </div>
+          <div class="pooja-slide-hints">
+            <span class="slide-hint-text">⟵ Swipe or click arrows to explore all ceremonies ⟶</span>
+          </div>
+          <div class="pooja-slider-mobile-nav">
+            <button class="pooja-mob-btn" id="poojaMobPrev" aria-label="Previous ceremony">⟨ Prev</button>
+            <button class="pooja-mob-btn" id="poojaMobNext" aria-label="Next ceremony">Next ⟩</button>
+          </div>
         </div>
       </div>
     </div>
