@@ -1978,9 +1978,13 @@ ul {
 }
 
 @media (max-width: 768px) {
+  .animate-on-scroll,
   .animate-slide-left,
-  .animate-slide-right {
-    transform: translateY(20px);
+  .animate-slide-right,
+  .animate-scale {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
 
@@ -2172,8 +2176,53 @@ ul {
   }
 
   /* Services */
+  .services-carousel {
+    padding: var(--space-md) 0 var(--space-lg);
+    gap: var(--space-md);
+  }
+
   .service-card {
-    flex: 0 0 260px;
+    flex: 0 0 280px;
+  }
+
+  /* Pooja Directory */
+  .pooja-directory {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pooja-cat-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 4px 12px 4px;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: var(--space-xl);
+  }
+
+  .pooja-cat-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pooja-cat-tab {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 7px 14px;
+    font-size: 0.8rem;
+  }
+
+  .pooja-cards-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .pooja-card {
+    padding: var(--space-lg);
   }
 
   /* Gallery */
@@ -2210,8 +2259,8 @@ ul {
 
   .container {
     padding: 0 var(--space-md);
-    max-width: 100vw;
-    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .section-padding {
@@ -2284,11 +2333,18 @@ ul {
   }
 
   .hero-actions {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .hero-btn {
+    padding: 11px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
   }
 
   .hero-btn-secondary {
-    grid-column: auto;
+    grid-column: 1 / -1;
   }
 
   .hero-trust-row {
@@ -2302,8 +2358,85 @@ ul {
   }
 
   /* Services */
+  .services-carousel-wrapper {
+    padding: var(--space-md) 0;
+  }
+
+  .services-carousel {
+    padding: var(--space-xs) 0 var(--space-md);
+    gap: 12px;
+  }
+
   .service-card {
-    flex: 0 0 240px;
+    flex: 0 0 calc(100vw - 56px);
+    max-width: 310px;
+    scroll-snap-align: center;
+  }
+
+  .service-card-image {
+    height: 180px;
+  }
+
+  .service-card-body {
+    padding: 14px 16px 18px;
+  }
+
+  .service-card-body h3 {
+    font-size: 1.05rem;
+  }
+
+  .service-card-body p {
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+    margin-bottom: var(--space-md);
+  }
+
+  .carousel-nav {
+    margin-top: var(--space-md);
+    gap: var(--space-md);
+  }
+
+  .carousel-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  /* Pooja Directory */
+  .pooja-directory {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+  }
+
+  .directory-header {
+    margin-bottom: var(--space-md);
+  }
+
+  .directory-title {
+    font-size: 1.35rem;
+    line-height: 1.3;
+  }
+
+  .directory-desc {
+    font-size: var(--fs-xs);
+    line-height: 1.5;
+  }
+
+  .pooja-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pooja-card {
+    padding: 14px 16px;
+  }
+
+  .pooja-card-title {
+    font-size: 1rem;
+  }
+
+  .pooja-card-desc {
+    font-size: var(--fs-xs);
+    line-height: 1.5;
   }
 
   /* Gallery */
@@ -2626,5 +2759,88 @@ ul {
   .faq-answer {
     padding-left: 0;
     margin-top: var(--space-xs);
+  }
+}
+
+/* ============================================
+   MOBILE QUICK ACTION BAR
+   ============================================ */
+.mobile-quick-bar {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-bottom: 72px;
+  }
+
+  .mobile-quick-bar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(200, 169, 94, 0.35);
+    box-shadow: 0 -4px 20px rgba(42, 26, 10, 0.08);
+    z-index: 999;
+    padding: 8px 12px;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .mq-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 8px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.15s ease;
+    min-height: 42px;
+  }
+
+  .mq-btn:active {
+    transform: scale(0.97);
+  }
+
+  .mq-btn-call {
+    background: #FFF8EA;
+    color: var(--dark-brown);
+    border: 1px solid rgba(200, 169, 94, 0.45);
+  }
+
+  .mq-btn-whatsapp {
+    background: #25D366;
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  }
+
+  .mq-btn-book {
+    background: linear-gradient(135deg, var(--deep-gold) 0%, var(--warm-gold) 100%);
+    color: #FFFFFF;
+    box-shadow: 0 2px 8px rgba(200, 169, 94, 0.3);
+  }
+
+  .mq-svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+    flex-shrink: 0;
+  }
+
+  .mq-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .mq-text {
+    white-space: nowrap;
   }
 }

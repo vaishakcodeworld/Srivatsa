@@ -296,6 +296,9 @@ const translations = {
     footer_svc_vedika: '⟡ Vedika Seva &amp; Parayana',
     footer_copyright: '© 2026 Srivatsa Vaidikam. All rights reserved for NexGenCodify.',
     footer_made_with: 'Made with 🙏 &amp; devotion',
+    quick_call: 'Call Pandit',
+    quick_whatsapp: 'WhatsApp',
+    quick_book: 'Book Now',
   },
 
   kn: {
@@ -590,6 +593,9 @@ const translations = {
     footer_svc_vedika: '⟡ ವೈದಿಕ ಸೇವೆ ಮತ್ತು ಪಾರಾಯಣ',
     footer_copyright: '© 2026 ಶ್ರೀವತ್ಸ ವೈದಿಕಂ. ಎಲ್ಲಾ ಹಕ್ಕುಗಳನ್ನು NexGenCodify ಗೆ ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.',
     footer_made_with: '🙏 ಭಕ್ತಿ ಹಾಗೂ ಸಮರ್ಪಣೆಯಿಂದ ರಚಿತವಾಗಿದೆ',
+    quick_call: 'ಕರೆ ಮಾಡಿ',
+    quick_whatsapp: 'ವಾಟ್ಸ್‌ಆ್ಯಪ್',
+    quick_book: 'ಬುಕ್ ಮಾಡಿ',
   }
 };
 
@@ -780,22 +786,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 100);
   }, { passive: true });
 
-  // Auto-advance carousel
-  let autoSlideInterval = setInterval(() => {
-    const next = (currentSlide + 1) % serviceCards.length;
-    scrollToSlide(next);
-  }, 4000);
+  // Auto-advance carousel (only when in viewport & not during user touch)
+  let autoSlideInterval;
+  function startAutoSlide() {
+    clearInterval(autoSlideInterval);
+    autoSlideInterval = setInterval(() => {
+      if (!carousel) return;
+      const rect = carousel.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView && document.visibilityState === 'visible') {
+        const next = (currentSlide + 1) % serviceCards.length;
+        scrollToSlide(next);
+      }
+    }, 4500);
+  }
+  startAutoSlide();
 
   // Pause auto-advance on interaction
   carousel.addEventListener('mouseenter', () => clearInterval(autoSlideInterval));
+  carousel.addEventListener('mouseleave', startAutoSlide);
   carousel.addEventListener('touchstart', () => clearInterval(autoSlideInterval), { passive: true });
-
-  carousel.addEventListener('mouseleave', () => {
-    autoSlideInterval = setInterval(() => {
-      const next = (currentSlide + 1) % serviceCards.length;
-      scrollToSlide(next);
-    }, 4000);
-  });
+  carousel.addEventListener('touchend', () => {
+    setTimeout(startAutoSlide, 5000);
+  }, { passive: true });
 
   // ===== SERVICE CARD CLICK → BOOKING MODAL =====
   serviceCards.forEach(card => {
@@ -1036,9 +1049,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== SCROLL ANIMATIONS (Intersection Observer) =====
   const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.02,
+    rootMargin: '50px 0px 50px 0px'
   };
+
+  const isMobileScreen = window.innerWidth <= 768;
 
   const animationObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -1052,7 +1067,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
 
   document.querySelectorAll('.animate-on-scroll, .animate-slide-left, .animate-slide-right, .animate-scale, .gallery-item').forEach(el => {
-    animationObserver.observe(el);
+    if (isMobileScreen) {
+      el.classList.add('visible');
+    } else {
+      animationObserver.observe(el);
+    }
   });
 
   // ===== SET MINIMUM DATE FOR BOOKING =====
