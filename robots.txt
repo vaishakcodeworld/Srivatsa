@@ -6,8 +6,11 @@ Allow: /
 Disallow: /scratch/
 Disallow: /tmp/
 
-# Explicitly allow major AI & LLM Search Crawlers for Generative Engine Optimization (GEO)
+# Googlebot Crawlers (Search & Images/Favicons)
 User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
 Allow: /
 
 User-agent: Google-Extended
