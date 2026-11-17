@@ -1,5 +1,5 @@
 # Robots.txt for Srivatsa Vaidikam
-# https://srivatsavaidikam.com/
+# https://srivatsavaidikam.in/
 
 User-agent: *
 Allow: /
@@ -37,6 +37,9 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+# Host
+Host: https://srivatsavaidikam.in
+
 # Sitemap Location
-Sitemap: https://srivatsavaidikam.com/sitemap.xml
+Sitemap: https://srivatsavaidikam.in/sitemap.xml
 

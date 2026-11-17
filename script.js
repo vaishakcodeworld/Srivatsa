@@ -1014,7 +1014,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `🪔 *Pooja / Ceremony:* ${service}\n` +
       `📅 *Preferred Date:* ${date}\n` +
       `📝 *Details / Location:* ${details}\n\n` +
-      `🙏 _Sent directly from srivatsavaidikam.com booking form_`;
+      `🙏 _Sent directly from srivatsavaidikam.in booking form_`;
 
     const whatsappUrl = `https://wa.me/${PANDIT_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
@@ -1121,7 +1121,7 @@ document.addEventListener('DOMContentLoaded', () => {
       `👤 *Devotee Name:* ${name}\n` +
       `📞 *Phone Number:* ${phone}\n` +
       `📝 *Message / Question:* ${message}\n\n` +
-      `🙏 _Sent directly from srivatsavaidikam.com contact form_`;
+      `🙏 _Sent directly from srivatsavaidikam.in contact form_`;
 
     const whatsappUrl = `https://wa.me/${PANDIT_WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
 
